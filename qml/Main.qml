@@ -37,6 +37,22 @@ MainView {
         scope: ContentScope.App
     }
 
+    ContentPeer {
+        id: exportPeer
+        // Default is gallery-app
+        //appId: "gallery.ubports"
+        contentType: ContentType.Pictures
+        handler: ContentHandler.Destination
+
+        property Component picItem: ContentItem {}
+
+        function save(filePath) {
+            var transfer = exportPeer.request()
+            transfer.items = [ picItem.createObject(root, { "url": filePath }) ]
+            transfer.state = ContentTransfer.Charged
+        }
+    }
+
     PageStack {
         id: pageStack
 
@@ -63,7 +79,7 @@ MainView {
             anchors {
                 fill: parent
                 topMargin: header.height
-                bottomMargin: importButton.height
+                bottomMargin: importButton.height + exportButton.height
             }
         }
 
@@ -71,7 +87,7 @@ MainView {
             id: importButton
 
             anchors {
-                bottom: parent.bottom
+                bottom: exportButton.top
                 horizontalCenter: parent.horizontalCenter
             }
 
@@ -86,6 +102,19 @@ MainView {
                     console.log("File" << fileUrl << "has been imported!")
                     contentImage.source = fileUrl
                 })
+            }
+        }
+        Button {
+            id: exportButton
+
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+
+            text: "Export single item"
+            onClicked: {
+                exportPeer.save(contentImage.source)
             }
         }
     }
