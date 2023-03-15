@@ -1,0 +1,7 @@
+[Desktop Entry]
+_Name=ContentHubTest
+Exec=contenthubtest %U
+Icon=assets/logo.svg
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true

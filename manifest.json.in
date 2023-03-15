@@ -1,0 +1,16 @@
+{
+    "name": "contenthubtest.sanderklootwijk",
+    "description": "App to test content hub",
+    "architecture": "@CLICK_ARCH@",
+    "title": "ContentHubTest",
+    "hooks": {
+        "contenthubtest": {
+            "apparmor": "contenthubtest.apparmor",
+            "desktop":  "contenthubtest.desktop",
+            "content-hub": "contenthubtest-content.json"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "Sander Klootwijk <sander.klootwijk@tutanota.com>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
